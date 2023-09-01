@@ -1,0 +1,35 @@
+linput = pI "linput"
+lname = pS "lname"
+in_channel = "1"
+
+once $ s "looper" # linput in_channel # n "0"
+
+once $ s "looper" # linput in_channel # n "1"
+
+once $ s "looper" # linput in_channel # n "2"
+
+once $ s "looper" # linput in_channel # n "3"
+
+d1 $ loopAt 1 $ s "loop" # n "<0!4 1!4 2!4 3!4>"
+  # shape (slow 4 $ saw)
+  # room (fast 2 $ sine)
+  # sz (slow 3 $ saw)
+  # delay 1
+  # delayt (fast 2 $ saw)
+  # delayfb (fast 2 $ saw)
+  # squiz (slow 2 $ saw)
+
+d2 $ loopAt 1 $ s "loop" # n "<3!4 2!4 1!4 0!4>"
+  # shape rand
+  # room rand
+  # sz rand
+  # delay rand
+  # delayt rand
+  # delayfb rand
+  # squiz "[0 | 0 | 0 | 0 | 2 | 4 | 6 | 8 ]"
+
+once $ s "freeLoops"
+
+setcps 0.5
+
+hush

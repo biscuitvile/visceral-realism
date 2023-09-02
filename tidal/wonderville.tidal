@@ -5,12 +5,16 @@ delay_vals = "[0.1 | 0.2 | 0.3 | 0.4]"
 sr_pattern = "[0 | 1]*4 [9 | 5]*2 [3 | 4]*2 [3 | 1]*8"
 up_pattern =  "0 3 5 7 -3 -5"
 
+setcps (120/60/4)
+
 d1 $ s "soundcheck" # n five_randoms # gain 2
   -- # lock 1
   -- # delay 1
   -- # delayt delay_vals
   -- # delayfb rand
   -- # squiz light_squiz
+
+xfadeIn 1 8 $ "soundcheck" # n five_randoms # gain 0
 
 xfadeIn 1 8 $ "bd*8" # distort sine # gain 2
 
